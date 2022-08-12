@@ -5,14 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale-1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="iniciodesesiontregistro.css">
 </head>
 <body>
   <div class="formulario">
     <h1>Inicio de Sesion</h1>
     <form method="post" >
       <div class="username">
-        <input type="text" required>
+        <input type="number" required>
         <label>DNI</label>
 </div> 
 <div class="contraseña">
