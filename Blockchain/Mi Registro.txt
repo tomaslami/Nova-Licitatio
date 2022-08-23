@@ -1,0 +1,61 @@
+Cosas que hice hasta ahora: 
+
+17/8/2022
+
+	-Investigué sobre Web3; su funcionamiento y como desarrollar páginas Web o Apps en ella. 
+	 Se trata sobre una nueva forma de comunicación en el ambito del internet; implementación 
+	 de nuevas formas de comunicación o redes sociales. Con la gran diferencia que su funcionamiento
+	 es descentralizado, es decir no está controlado por una sola maquina por así decirlo, sino son 
+	 varias máquinas (nodos) los cuales ayudan a su funcionamiento. Aplicando esta forma logra ser mucho
+	 más seguro el manejo de información.
+
+
+	-Pude repasar e investigar más sobre solidity y me enseñaron la forma de poder conectar los contratos que yo cree 
+	 con la página Web. No me acuerdo detalladamente pero una vez terminado y testeado el contrato hay que abrir los detalles
+	 y copiar la direccion de la ABI, que es lo que me va a permitir conectar los contratos que se hagan en la red de Ethereum
+	 con la página Web. Para eso habría que agregar al Backend del proyecto una librería llamada Web3.js.
+
+	-Tengo más o menos la base y la forma de arrancar el contrato
+
+
+18/8/2022
+
+	-Estoy un poco más en tema pero necesito aclarar varias cosas y seguir investigando. 
+
+22/8/2022
+
+	-Sé más o menos como funcionaría y la forma de hacer las cosas.
+
+
+Cosas que quiero hacer proximamente (Hoy en adelante):
+
+17/8/2022
+
+	-No me quedó del todo claro la forma de empezar el contrato y como relacionar los datos que tengo que ubicar en las funciones.
+	 Es decir que tipo de dato pongo cada cosa o el funcionamiento de futuras funciones etc. Necesito algo que me diga por donde llevarlo.
+
+
+	-Aprender y profundizar la manera exacta en la que el contrato se va a conectar con la página y le va a mostrar la información.
+
+
+	-Fijarme y pensar si me quedan más cosas por investigar.
+
+18/8/2022
+
+	-Necesito saber el funcionamiento exacto que tienen que tener mis funciones.
+	-Seguir investigando sobre solidity con el material de la página del campus.
+
+	-Hay varios estados que pueden tomas las funciones o las variables. La idea 
+	 es aprender cuales y tratar de ir avanzando con la programación del contrato.
+
+	-Ir más a fondo con el funcionamiento de la ABI del contrato.	
+
+
+ 22/8/2022
+
+	-Tengo que investigar bien el funcionamiento de struct y fijarme
+	 bien la forma de relacionar las diferentes variables.
+
+
+	 
+ 
