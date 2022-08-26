@@ -26,6 +26,11 @@ Cosas que hice hasta ahora:
 
 	-Sé más o menos como funcionaría y la forma de hacer las cosas.
 
+25/8/2022
+
+	-Avance en el funcionamiento y la estructura del contrato, va tomando forma y estoy usando varios metodos que aprendi en cursos
+	 de solidity, igualmente tengo que aclarar cosas.
+
 
 Cosas que quiero hacer proximamente (Hoy en adelante):
 
@@ -57,5 +62,8 @@ Cosas que quiero hacer proximamente (Hoy en adelante):
 	 bien la forma de relacionar las diferentes variables.
 
 
-	 
+
+25/8/2022
+
+	-Tengo que consultar bien la manera de conectar los datos con los metodos que tengo que crear.
  

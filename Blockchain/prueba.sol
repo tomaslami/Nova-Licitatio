@@ -1,21 +1,25 @@
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.7.0 <0.16.0;
+// SPDX-License-Identifier: MIT
 
+pragma solidity ^0.8.12;
 contract Licitaciones {
 
-struct Licitacion {
+event NewLicit(uint Licit_Id, uint Tiempo, uint Monto, string Ubicacion);
 
+struct Licitacion {
     uint _TiempoPlazo;
     uint _MontoSugerido;
-    string _Ubicacion;
-    address _EmpresaCons;
-    address _OrgEst;
-                  }
-mapping (uint => Licitacion) _NumLic;
-mapping (address => string) _EmpresaCons;
-uint _CantLicit;
+    string memory _Ubicacion;
+}
+Licitacion[] public licitaciones;
+mapping(string => address) public licit_ToOwner;
+mapping(address => string) ownerLicit_Count;
 
-function NewLicitacion (address _EmpresaCons, address _OrgEst, uint _)public returns (){
+function _createLicit(uint TiempoPlazo_, uint MontoSugerido_, string memory Ubicacion_) private view{
+
+uint id = licitaciones.push(Licitacion(TiempoPlazo_, MontoSugerido_, Ubicacion_)) - 1;
+licit_ToOwner[id] = msg.sender;
+ownerLicit_Count[msg.sender]++;
+emit NewLicit(id, TiempoPlazo_, MontoSugerido_, Ubicacion_);
 
 }
 
