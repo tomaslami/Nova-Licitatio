@@ -22,4 +22,4 @@ function CreateLicit(uint _ProcessNum, uint _SuggAmount, uint _Time, string memo
     Comp_Cons[Id] = msg.sender;
     NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
     }
-}
+
