@@ -1,27 +1,25 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.12;
-contract Licitaciones {
+pragma solidity ^0.4.19;
 
-event NewLicit(uint Licit_Id, uint Tiempo, uint Monto, string Ubicacion);
+contract Proyecto {
 
 struct Licitacion {
-    uint _TiempoPlazo;
-    uint _MontoSugerido;
-    string memory _Ubicacion;
-}
+uint ProcessNum;
+string ProcessName;
+string Ubi;
+uint SuggAmount;
+uint Time;
+    }
+event NewLicit (address licit_Id, uint processNum, uint suggAmount, string ubi, string processName, uint time);
 Licitacion[] public licitaciones;
-mapping(string => address) public licit_ToOwner;
-mapping(address => string) ownerLicit_Count;
+mapping(uint => address) public Comp_Licit;
+mapping(uint => address) public Comp_Cons;
 
-function _createLicit(uint TiempoPlazo_, uint MontoSugerido_, string memory Ubicacion_) private view{
-
-uint id = licitaciones.push(Licitacion(TiempoPlazo_, MontoSugerido_, Ubicacion_)) - 1;
-licit_ToOwner[id] = msg.sender;
-ownerLicit_Count[msg.sender]++;
-emit NewLicit(id, TiempoPlazo_, MontoSugerido_, Ubicacion_);
-
-}
-
-
+function CreateLicit(uint _ProcessNum, uint _SuggAmount, uint _Time, string memory _Ubi, string memory _ProcessName) internal {
+    uint Id = licitaciones.push(Licitacion(_ProcessNum, _ProcessName, _Ubi, _SuggAmount, _Time));
+    Comp_Licit[Id] = msg.sender;
+    Comp_Cons[Id] = msg.sender;
+    NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
+    }
 }
