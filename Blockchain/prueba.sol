@@ -22,4 +22,13 @@ function CreateLicit(uint _ProcessNum, uint _SuggAmount, uint _Time, string memo
     Comp_Cons[Id] = msg.sender;
     NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
     }
+modifier onlyComp (uint _LicitId){
+    require(msg.sender == Comp_Licit[_LicitId]);
+    require(msg.sender == Comp_Cons[_LicitId]);
+    _;
+}
+
+function getLicitByOwner (address _Owner) internal view returns(int[]) {
+    
+}
 
