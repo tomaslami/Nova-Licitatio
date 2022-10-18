@@ -66,4 +66,7 @@ Cosas que quiero hacer proximamente (Hoy en adelante):
 25/8/2022
 
 	-Tengo que consultar bien la manera de conectar los datos con los metodos que tengo que crear.
+
+-tengo problemas con la wallet, no puedo conectar con rinkeby, y la red de ric ort se cayó.
+
  
