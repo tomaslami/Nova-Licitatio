@@ -32,3 +32,35 @@ modifier onlyComp (uint _LicitId){
 }
 
 }
+
+
+(CONEXION PARTE BACK)
+
+***
+(este script es para incluir la librería web3.js, se pone en el head del file.)
+<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+***
+
+<script>
+        var test;
+        function startApp(){
+            var testAddress = "Mi direccion";
+            test = new web3js.eth.Contract(contract_ABI, contract_Address);
+        }
+      window.addEventListener('load', function() {
+  // Aquí se comprueba si Web3 ha sido inyectado por el navegador (Mist/Metamask)
+  if (typeof web3 !== 'undefined') {
+    // Usar el proveedor Mist/MetaMask
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    // Esto se activará si el usuario no tiene instalado Mist/Metamask. Sería 
+    // recomendable avisar al usuario de que debe instalarse Misk/Metamask
+    // para poder usar nuestra DApp.
+  }
+  // Ahora ya puedes iniciar tu DApp y acceder a Web3.js libremente:
+  startApp()
+})
+    </script>
+
+Tengo que agregar en principio esto al back, la duda es si tengo que crear un nuevo archivo html o si lo pego en uno ya creado, 
+y si es asi en cual ubicarlo. 
