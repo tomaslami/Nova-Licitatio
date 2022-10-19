@@ -1,0 +1,66 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.7;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Proyecto {
+
+struct Licitacion {
+address OwnerComp;
+uint ProcessNum;
+string ProcessName;
+string Ubi;
+uint SuggAmount;
+uint Time;
+    }
+event NewLicit (address OwnerComp, uint processNum, uint suggAmount, string ubi, string processName, uint time);
+Licitacion[] public licitaciones;
+mapping(uint => address) public Comp_Licit;
+mapping(uint => address) public Comp_Cons;
+
+function CreateLicit(address _OwnerComp, uint _ProcessNum, uint _SuggAmount, uint _Time, string memory _Ubi, string memory _ProcessName) public {
+    uint Id = licitaciones.push(Licitacion(_OwnerComp, _ProcessNum, _SuggAmount, _Time, _Ubi, _ProcessName));
+    Comp_Licit[Id] = msg.sender;
+    Comp_Cons[Id] = msg.sender;
+    NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
+    }
+modifier onlyComp (uint _LicitId){
+    require(msg.sender == Comp_Licit[_LicitId]);
+    require(msg.sender == Comp_Cons[_LicitId]);
+    _;
+}
+
+}
+
+
+(CONEXION PARTE BACK)
+
+***
+(este script es para incluir la librería web3.js, se pone en el head del file.)
+<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+***
+
+<script>
+        var test;
+        function startApp(){
+            var testAddress = "Mi direccion";
+            test = new web3js.eth.Contract(contract_ABI, contract_Address);
+        }
+      window.addEventListener('load', function() {
+  // Aquí se comprueba si Web3 ha sido inyectado por el navegador (Mist/Metamask)
+  if (typeof web3 !== 'undefined') {
+    // Usar el proveedor Mist/MetaMask
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    // Esto se activará si el usuario no tiene instalado Mist/Metamask. Sería 
+    // recomendable avisar al usuario de que debe instalarse Misk/Metamask
+    // para poder usar nuestra DApp.
+  }
+  // Ahora ya puedes iniciar tu DApp y acceder a Web3.js libremente:
+  startApp()
+})
+    </script>
+
+Tengo que agregar en principio esto al back, la duda es si tengo que crear un nuevo archivo html o si lo pego en uno ya creado, 
+y si es asi en cual ubicarlo. 
