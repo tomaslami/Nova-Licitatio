@@ -12,26 +12,27 @@ uint SuggAmount;
 uint Time;
     }
 event NewLicit (address licit_Id, uint processNum, uint suggAmount, string ubi, string processName, uint time);
-Licitacion[] public licitaciones;
-mapping(uint => address) public Comp_Licit;
-mapping(uint => address) public Comp_Cons;
 
-function CreateLicit(uint _ProcessNum, uint _SuggAmount, uint _Time, string memory _Ubi, string memory _ProcessName) internal {
+Licitacion[] public licitaciones;
+mapping(uint => address) public Gob_Licit;
+
+function SetLicit(uint _ProcessNum, uint _SuggAmount, uint _Time, string memory _Ubi, string memory _ProcessName) public{
     licitaciones.push(Licitacion(_ProcessNum, _ProcessName, _Ubi, _SuggAmount, _Time));
-    int id = licitaciones.length;
-    Comp_Licit[id] = msg.sender;
-    Comp_Cons[id] = msg.sender;
-    NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
+    uint id = licitaciones.length;
+    Gob_Licit[id] = msg.sender;
+    emit NewLicit(msg.sender, _ProcessNum, _SuggAmount, _Ubi, _ProcessName, _Time);
     }
+
 modifier onlyComp (uint _LicitId){
-    require(msg.sender == Comp_Licit[_LicitId]);
-    require(msg.sender == Comp_Cons[_LicitId]);
+    require(msg.sender == Gob_Licit[_LicitId]);
     _;
 }
 
-function LicitView() public view () {
-return Licitacion; //quiero decir los valores que hay en Licitacion pero no se como expresarlo.
-} 
+
+function ViewLicit () public view returns (Licitacion[] memory){
+    return licitaciones;
+}
+
 
 
 }
@@ -39,31 +40,142 @@ return Licitacion; //quiero decir los valores que hay en Licitacion pero no se c
 
 (CONEXION PARTE BACK)
 
-***
-(este script es para incluir la librería web3.js, se pone en el head del file.)
-<script language="javascript" type="text/javascript" src="web3.min.js"></script>
-***
+const Web3 = require('web3');
 
-<script>
-        var test;
-        function startApp(){
-            var testAddress = "Mi direccion";
-            test = new web3js.eth.Contract(contract_ABI, contract_Address);
-        }
-      window.addEventListener('load', function() {
-  // Aquí se comprueba si Web3 ha sido inyectado por el navegador (Mist/Metamask)
-  if (typeof web3 !== 'undefined') {
-    // Usar el proveedor Mist/MetaMask
-    web3js = new Web3(web3.currentProvider);
-  } else {
-    // Esto se activará si el usuario no tiene instalado Mist/Metamask. Sería 
-    // recomendable avisar al usuario de que debe instalarse Misk/Metamask
-    // para poder usar nuestra DApp.
-  }
-  // Ahora ya puedes iniciar tu DApp y acceder a Web3.js libremente:
-  startApp()
-})
-    </script>
+var ContractAbi = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "nombre_",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "apellido_",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "curso_",
+				"type": "string"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "apellido",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "materia",
+				"type": "string"
+			}
+		],
+		"name": "aprobo",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "curso",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nombre_completo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "materia",
+				"type": "string"
+			}
+		],
+		"name": "nota_materia",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "promedio",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "materia",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "nota",
+				"type": "uint256"
+			}
+		],
+		"name": "set_nota_materia",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
 
-Tengo que agregar en principio esto al back, la duda es si tengo que crear un nuevo archivo html o si lo pego en uno ya creado, 
-y si es asi en cual ubicarlo. 
+var ContratAddress = "0x5d64CDbA37582683351D9348737caB29Dbc5dE4e";          
+var conexion = new web3js.eth.Contract(ContractAbi, "0x5d64CDbA37582683351D9348737caB29Dbc5dE4e");
+
+const rpcURL = "https://goerli.infura.io/v3/"
+const web3 = new Web3(rpcURL)
