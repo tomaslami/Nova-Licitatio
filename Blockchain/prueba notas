@@ -43,139 +43,203 @@ function ViewLicit () public view returns (Licitacion[] memory){
 const Web3 = require('web3');
 
 var ContractAbi = [
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "nombre_",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "apellido_",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "curso_",
-				"type": "string"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "apellido",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "materia",
-				"type": "string"
-			}
-		],
-		"name": "aprobo",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "curso",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "nombre_completo",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "materia",
-				"type": "string"
-			}
-		],
-		"name": "nota_materia",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "promedio",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "materia",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "nota",
-				"type": "uint256"
-			}
-		],
-		"name": "set_nota_materia",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
+	[
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": false,
+					"internalType": "address",
+					"name": "licit_Id",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "processNum",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "suggAmount",
+					"type": "uint256"
+				},
+				{
+					"indexed": false,
+					"internalType": "string",
+					"name": "ubi",
+					"type": "string"
+				},
+				{
+					"indexed": false,
+					"internalType": "string",
+					"name": "processName",
+					"type": "string"
+				},
+				{
+					"indexed": false,
+					"internalType": "uint256",
+					"name": "time",
+					"type": "uint256"
+				}
+			],
+			"name": "NewLicit",
+			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "Gob_Licit",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_ProcessNum",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_SuggAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_Time",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "_Ubi",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "_ProcessName",
+					"type": "string"
+				}
+			],
+			"name": "SetLicit",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "ViewLicit",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "uint256",
+							"name": "ProcessNum",
+							"type": "uint256"
+						},
+						{
+							"internalType": "string",
+							"name": "ProcessName",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "Ubi",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "SuggAmount",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "Time",
+							"type": "uint256"
+						}
+					],
+					"internalType": "struct Proyecto.Licitacion[]",
+					"name": "",
+					"type": "tuple[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "licitaciones",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "ProcessNum",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "ProcessName",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "Ubi",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "SuggAmount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "Time",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
 ]
 
-var ContratAddress = "0x5d64CDbA37582683351D9348737caB29Dbc5dE4e";          
-var conexion = new web3js.eth.Contract(ContractAbi, "0x5d64CDbA37582683351D9348737caB29Dbc5dE4e");
+var ContratAddress = "0x6dEe5303a04881DE033660Ae90BD1b2029577daE";          
+var conexion = new web3js.eth.Contract(ContractAbi, "0x6dEe5303a04881DE033660Ae90BD1b2029577daE");
 
 const rpcURL = "https://goerli.infura.io/v3/"
 const web3 = new Web3(rpcURL)
+
+var userAccount;
+
+var accountInterval = setInterval(function() {
+	if (web3.eth.accounts[0] !== userAccount){
+		userAccunt = web3.eth.accounts[0];
+			updateInterface(userAccount).then(display);
+	}
+}, 100);
+
+function ViewLicit() {
+	return Proyecto.methods.ViewLicit().call()
+}	
+
+function SetLicit(_ProcessName, _ProcessNum, _SuggAmount, _Time, _Ubi) {
+	return Proyecto.methods.SetLicit(_ProcessName, _ProcessNum, _SuggAmount, _Time, _Ubi).send()
+}
